@@ -31,7 +31,7 @@ ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
 
 class YTDLSource(discord.PCMVolumeTransformer):
-    def __init__(self, source, *, data, volume=0.01):
+    def __init__(self, source, *, data, volume=0.05):
         super().__init__(source, volume)
 
         self.data = data
@@ -103,7 +103,7 @@ class Music(commands.Cog):
         if ctx.voice_client is None:
             return await ctx.send("Not connected to a voice channel.")
 
-        ctx.voice_client.source.volume = volume / 10
+        ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
 
     @commands.command()
