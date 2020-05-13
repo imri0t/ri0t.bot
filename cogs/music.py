@@ -70,11 +70,11 @@ class Music(commands.Cog):
     @commands.command()
     async def playf(self, ctx, *, query):
         """Plays a file from the local filesystem"""
-
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(query))
+        song = (query+'.webm')
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song))
         ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
 
-        await ctx.send('Now playing: {}'.format(query))
+        await ctx.send('Now playing: {}'.format(song))
 
     @commands.command()
     async def yt(self, ctx, *, url):
