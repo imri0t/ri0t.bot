@@ -1,10 +1,9 @@
 import asyncio
+import os
 
-import discord
-from discord.ext import commands
-
+import discord as d
 import youtube_dl
-
+from discord.ext import commands
 
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -27,10 +26,11 @@ ffmpeg_options = {
     'options': '-vn'
 }
 
+
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
 
-class YTDLSource(discord.PCMVolumeTransformer):
+class YTDLSource(d.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.05):
         super().__init__(source, volume)
 
@@ -49,7 +49,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             data = data['entries'][0]
 
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+        return cls(d.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
 class Music(commands.Cog):
@@ -59,7 +59,7 @@ class Music(commands.Cog):
 
 
     @commands.command()
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
+    async def join(self, ctx, *, channel: d.VoiceChannel):
         """Joins a voice channel"""
 
         if ctx.voice_client is not None:
@@ -71,9 +71,10 @@ class Music(commands.Cog):
     async def playf(self, ctx, *, query):
         """Plays a file from the local filesystem"""
         
-        song = (query+'.webm')
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song))
-        ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+        async with ctx.typing():
+            song = (query + ".webm")
+            source = d.PCMVolumeTransformer(d.FFmpegPCMAudio(song))
+            ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
 
         await ctx.send('Now playing: {}'.format(song))
 
@@ -102,7 +103,7 @@ class Music(commands.Cog):
         """Changes the player's volume"""
 
         if ctx.voice_client is None:
-            return await ctx.send("Not connected to a voice channel.")
+            return await ctx.send('you\'re not in a vc, dude')
 
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
@@ -121,8 +122,8 @@ class Music(commands.Cog):
             if ctx.author.voice:
                 await ctx.author.voice.channel.connect()
             else:
-                await ctx.send("You are not connected to a voice channel.")
-                raise commands.CommandError("Author not connected to a voice channel.")
+                await ctx.send('you\'re not in a vc, my guy')
+                raise commands.CommandError('author not connected to a voice channel')
         elif ctx.voice_client.is_playing():
             ctx.voice_client.stop()
 
