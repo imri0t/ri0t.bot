@@ -50,7 +50,6 @@ class basicReplies(commands.Cog):
             kill_message = choice(l.killReply)
             await ctx.send(kill_message.format(member.display_name))
 
-
     @commands.command(pass_context=True)
     async def rip(self, ctx):
         '''a basic rip command'''
