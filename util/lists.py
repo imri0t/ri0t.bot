@@ -3,6 +3,16 @@ a utility that stores lists of responses
 categorized for the commands they are used for
 '''
 
+eightBall = [
+    'yes', 'no.', 'maybe?', 'idk dude', 'ask me later, I might answer then', 'why are you asking me?', 'I\'m not qualified to answer', 'sure, whatever',
+    'nah fam', 'fuck no', 'why would you?', '...', '???', 'I don\'t know dude, ask a professional', 'dude, no', 'bruh', '*bruh*', '***bruh***', 'hell to the **yes**',
+    'I don\'t feel like answering this time in particular', 'ask me when you\'re less gae', 'that\'s disgusting and you should reevaluate what you consider normal',
+    'uhhhhhhhhhhhhno', 'uhhhhhhhhhhhyeah', 'yeah', 'nah', 'fucks no bro', 'that one\'s a no go bro', 'don\'t ask me again for like 3 seconds', 'u wot m8?',
+    'lol I don\'t know dude', 'you do realize that this is just a random chance kind of thing and you should probably not base your decisions on this, right?',
+    'I don\'t care', 'you expect me to know?', 'you stink so no']
+
+#####
+
 killReply = [
     '**{}** \'fell\' off a cliff', 'I punched **{}** like super hard',
     '**{}** had a *dire* accident', 'I made **{}** divide by 0',

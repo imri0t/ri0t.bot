@@ -15,6 +15,13 @@ class basicReplies(commands.Cog):
     def __init__(self, bot, **kwargs):
         self.bot = bot
         self.name = kwargs.get('username')
+
+    @commands.command(pass_context=True, aliases=['8ball'])
+    async def eightball(self, ctx, question: str):
+        '''an 8ball that gives a random output'''
+        await ctx.trigger_typing()
+        await asyncio.sleep(1)
+        await ctx.send(choice(l.eightBall))
     
     @commands.command(pass_context=True)
     async def kill(self, ctx, *, member: d.Member = None):
