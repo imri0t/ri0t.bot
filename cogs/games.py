@@ -5,7 +5,7 @@ import discord as d
 from discord import errors
 from discord.ext import commands
 
-from util import lists as l #this will be for the quiz command
+from util import lists as l 
 
 class Games(commands.Cog):
     def __init__(self, bot):
