@@ -34,7 +34,7 @@ class basicReplies(commands.Cog):
             gbye_mention = choice(l.byeMention)
             await self.bot.say(gbye_mention.format(member.display_name))
 
-    @commands.command()
+    @commands.command(pass_context=True)
     async def choose(self, *choices: str):
         '''a command used to choose between different options'''
         #split choices with , using roll as ref
