@@ -15,7 +15,7 @@ class basicReplies(commands.Cog):
         self.bot = bot
         self.name = kwargs.get('username')
 
-    @commands.command(pass_context=True, aliases=['Bye', 'BYE', 'goodbye', 'Goodbye', 'GoodBye', 'GOODBYE'])
+    @commands.command(pass_context=True, aliases=['goodbye'])
     async def bye(self, ctx, *, member: d.Member = None):
         '''a basic goodbye command'''
         await self.bot.send_typing(ctx.message.channel)
@@ -34,7 +34,7 @@ class basicReplies(commands.Cog):
             gbye_mention = choice(l.byeMention)
             await self.bot.say(gbye_mention.format(member.display_name))
 
-    @commands.command(aliases=['CHOOSE', 'Choose'])
+    @commands.command()
     async def choose(self, *choices: str):
         '''a command used to choose between different options'''
         #split choices with , using roll as ref
@@ -48,7 +48,7 @@ class basicReplies(commands.Cog):
         await asyncio.sleep(1)
         await ctx.send(choice(l.eightBall))
 
-    @commands.command(pass_context=True, aliases=['f', 'F'])
+    @commands.command(pass_context=True)
     async def _f(self, ctx, *, member: d.Member = None):
         '''a basic command that gives a f message'''
         await self.bot.send_typing(ctx.message.channel)
@@ -65,7 +65,7 @@ class basicReplies(commands.Cog):
             await self.bot.say(respect)
             return
 
-    @commands.command(pass_context=True, aliases=['Goodmorning', 'GOODMORNING', 'morning', 'Morning', 'MORNING', 'gm', 'GM'])
+    @commands.command(pass_context=True, aliases=['gm', 'morning'])
     async def goodmorning(self, ctx, *, member: d.Member = None):
         '''a basic goodmorning command'''
         await self.bot.send_typing(ctx.message.channel)
@@ -84,7 +84,7 @@ class basicReplies(commands.Cog):
             morning_mention = choice(l.morningMention)
             await self.bot.say(morning_mention.format(member.display_name))
 
-    @commands.command(pass_context=True, aliases=['Goodnight', 'GOODNIGHT', 'night', 'Night', 'NIGHT', 'gn', 'GN'])
+    @commands.command(pass_context=True, aliases=['gn'])
     async def goodnight(self, ctx, *, member: d.Member = None):
         '''a basic goodnight command'''
         await self.bot.send_typing(ctx.message.channel)
@@ -103,7 +103,7 @@ class basicReplies(commands.Cog):
             night_mention = choice(l.nightMention)
             await self.bot.say(night_mention.format(member.display_name))
 
-    @commands.command(pass_context=True, aliases=['hbd', 'HBD', 'HAPPYBIRTHDAY', 'Happybirthday'])
+    @commands.command(pass_context=True, aliases=['hbd'])
     async def happybirthday(self, ctx, *, member: d.Member = None):
         '''a basic command that gives a happy birthday message'''
         await self.bot.send_typing(ctx.message.channel)
@@ -119,7 +119,7 @@ class basicReplies(commands.Cog):
             hb = choice(l.bDayMessage)
             await self.bot.say(hb.format(member.display_name))
 
-    @commands.command(pass_context=True, aliases=['Hello', 'HELLO', 'hi', 'Hi', 'HI', 'hey', 'Hey', 'HEY'])
+    @commands.command(pass_context=True, aliases=['hi', 'hey'])
     async def hello(self, ctx, *, member: d.Member = None):
         '''a basic greeting command'''
         await self.bot.send_typing(ctx.message.channel)
@@ -138,7 +138,7 @@ class basicReplies(commands.Cog):
             greet_mention = choice(l.greetMention)
             await self.bot.say(greet_mention.format(member.display_name))
 
-    @commands.command(pass_context=True, aliases=['Insult', 'INSULT'])
+    @commands.command(pass_context=True)
     async def insult(self, ctx, *, member: d.Member = None):
         '''a command that sends insults'''
         await self.bot.send_typing(ctx.message.channel)
@@ -186,7 +186,7 @@ class basicReplies(commands.Cog):
             kill_message = choice(l.killReply)
             await ctx.send(kill_message.format(member.display_name))
 
-    @commands.command(pass_context=True, aliases=['LOL', 'Lol'])
+    @commands.command(pass_context=True)
     async def lol(self, ctx, *, member: d.Member = None):
         '''a command Sany rode my ass about'''
         await self.bot.send_typing(ctx.message.channel)
@@ -200,7 +200,7 @@ class basicReplies(commands.Cog):
         else:
             await self.bot.say('{0} {1}'.format(member.mention, choice(l.LOL)))
 
-    @commands.command(pass_context=True, aliases=['LOVE', 'Love', 'luv', 'LUV', 'Luv'])
+    @commands.command(pass_context=True, aliases=['luv'])
     async def love(self, ctx, *, member: d.Member = None):
         '''a basic command that sends a love message'''
         await self.bot.send_typing(ctx.message.channel)
@@ -228,7 +228,7 @@ class basicReplies(commands.Cog):
         embed.add_field(name='Quote', value=motivate_message)
         await self.bot.say(embed=embed)
 
-    @commands.command(pass_context=True, aliases=['name', 'Name', 'NAME'])
+    @commands.command(pass_context=True, aliases=['name'])
     async def _name(self, ctx, *, member: d.Member = None):
         '''a basic command that gives a set of words for  names'''
         await self.bot.send_typing(ctx.message.channel)
@@ -250,7 +250,7 @@ class basicReplies(commands.Cog):
             mention = choice(l.sayMention).format(member.display_name)
             await self.bot.say(mention + ' ' + name)
 
-    @commands.command(pass_context=True, aliases=['Oof', 'OOF'])
+    @commands.command(pass_context=True)
     async def oof(self, ctx):
         '''a basic oof command'''
         await self.bot.send_typing(ctx.message.channel)
@@ -265,7 +265,7 @@ class basicReplies(commands.Cog):
         _choice = choice(l.rip)
         await ctx.send(_choice)
 
-    @commands.command(pass_context=True, aliases=['ShowerThoughts', 'st', 'ST'])
+    @commands.command(pass_context=True, aliases=['st'])
     async def showerthoughts(self, ctx):
         '''sends a shower thought'''
         await self.bot.send_typing(ctx.message.channel)
